@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Iproduct } from './product';
 
 @Component({
   selector: 'pm-product-list',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductListComponent implements OnInit {
   pageTitle: string= "product List";
-  products: any[] = [
+  showImage: boolean = false;
+  listFilter: string = "cart";
+  products: Iproduct[] = [
     {
       "productId": 1,
       "productName": "Leaf Rake",
@@ -63,5 +66,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
   }
-
+toggleImage(): void {
+  this.showImage= !this.showImage
+}
 }
