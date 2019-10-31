@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Iproduct } from "./product";
+import { ProductService } from './product.service';
 
 @Component({
   selector: "pm-product-list",
@@ -77,8 +78,8 @@ export class ProductListComponent implements OnInit {
       imageUrl: "assets/images/xbox-controller.png"
     }
   ];
-  constructor() {
-    this.filteredProducts = this.products;
+  constructor(private productService: ProductService) {
+    
   }
   performFilter(filterBy: string): Iproduct[] {
     filterBy = filterBy.toLocaleLowerCase();
@@ -92,7 +93,10 @@ export class ProductListComponent implements OnInit {
     this.pageTitle = `This Product ${message}`;
   }
 
-  ngOnInit() {}
+  ngOnInit(): void {
+this.products= this.productService.getProducts();
+this.filteredProducts = this.products;
+  }
   toggleImage(): void {
     this.showImage = !this.showImage;
   }
